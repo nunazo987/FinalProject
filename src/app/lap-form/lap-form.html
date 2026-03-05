@@ -1,0 +1,18 @@
+<!-- <p>lap-form works!</p> -->
+<h2>Add Lap</h2>
+
+<form [formGroup]="newLapForm">
+    <input formControlName="driver" type="text" placeholder="Driver">
+    @if (newLapform.get('driver')?.invalid && newLapForm.get('driver')?.touched){
+        <p>mensagem de obrigatorio</p>
+    }
+    <input formControlName="team" type="text" placeholder="Driver">
+
+    <input formControlName="circuit" type="text" placeholder="Driver">
+
+    <input formControlName="lapTime" type="text" placeholder="Driver">
+<!-- validacao customizada aqui -->
+    <input formControlName="date" type="text" placeholder="Driver">
+
+    <button (click)="addLap()">Add Lap</button>
+</form>

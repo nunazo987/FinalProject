@@ -6,7 +6,7 @@ import { Lap } from '../core/models/lap.model'
   selector: 'app-lap-list',
   imports: [],
   templateUrl: './lap-list.html',
-  styleUrl: './lap-list.css',
+  styleUrls: ['./lap-list.css'],
 })
 export class LapList implements OnInit {
 
@@ -20,7 +20,7 @@ export class LapList implements OnInit {
     this.filteredLaps = [...this.laps];
   }
 
-  filteredByDriver(driver: string): void {
+  filterByDriver(driver: string): void {
     this.filteredLaps = this.laps.filter(lap => lap.driver.includes(driver));
   }
 
