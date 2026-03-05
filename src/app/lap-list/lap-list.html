@@ -10,11 +10,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let lap of laps">
-            <td>{{ lap.driver }}</td>
-            <td>{{ lap.circuit }}</td>
-            <td>{{ lap.lapTime }}</td>
-            <td>{{ lap.date }}</td>
+        <tr>
+            @for(lap of laps; track lap.id){
+                <td>{{ lap.driver }}</td>
+                <td>{{ lap.circuit }}</td>
+                <td>{{ lap.lapTime }}</td>
+                <td>{{ lap.date }}</td>
+            }
         </tr>
     </tbody>
 </table>
