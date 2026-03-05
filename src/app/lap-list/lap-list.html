@@ -1,0 +1,20 @@
+<!-- <p>lap-list works!</p> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Driver</th>
+            <th>Circuit</th>
+            <th>Lap Time</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lap of laps">
+            <td>{{ lap.driver }}</td>
+            <td>{{ lap.circuit }}</td>
+            <td>{{ lap.lapTime }}</td>
+            <td>{{ lap.date }}</td>
+        </tr>
+    </tbody>
+</table>
