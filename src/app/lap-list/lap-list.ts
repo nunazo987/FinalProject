@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service'
 import { Lap } from '../core/models/lap.model'
 
@@ -8,13 +8,23 @@ import { Lap } from '../core/models/lap.model'
   templateUrl: './lap-list.html',
   styleUrl: './lap-list.css',
 })
-export class LapList {
+export class LapList implements OnInit {
 
   laps: Lap[] = [];
+  filteredLaps: Lap[] = [];
 
   constructor(private lapService: LapService) {}
 
   ngOnInit(): void {
     this.laps = this.lapService.getAll()
+    this.filteredLaps = [...this.laps];
+  }
+
+  filteredByDriver(driver: string): void {
+    this.filteredLaps = this.laps.filter(lap => lap.driver.includes(driver));
+  }
+
+  sortByLapTime(){
+    this.filteredLaps.sort((a, b) => a.lapTime - b.lapTime);
   }
 }
