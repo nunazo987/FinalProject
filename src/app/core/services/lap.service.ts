@@ -41,4 +41,44 @@ export class LapService {
         const filteredLaps = laps.filter(lap => lap.id !== id);
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filteredLaps));
     }
+
+    getTotalLaps(): number{
+        const laps = this.getAll();
+        return laps.length
+    }
+
+    getBestLap(): Lap | undefined {
+        const laps = this.getAll();
+
+        if (laps.length === 0){
+            return undefined;
+        }
+
+        return laps.reduce((best, current) => 
+        current.lapTime < best.lapTime ? current : best);
+    }
+
+    getLastLap(): Lap | undefined {
+
+        const laps = this.getAll();
+
+        if (laps.length === 0) {
+            return undefined;
+        }
+
+        return laps[laps.length - 1];
+    }
+
+    getAverageLapTime(): number | undefined {
+
+        const laps = this.getAll();
+
+        if (laps.length === 0) {
+            return undefined;
+        }
+
+        const total = laps.reduce((sum, lap) => sum + lap.lapTime, 0);
+        return total / laps.length
+    }
+    
 }
