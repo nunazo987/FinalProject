@@ -1,18 +1,32 @@
-<!-- <p>lap-form works!</p> -->
 <h2>Add Lap</h2>
 
 <form [formGroup]="newLapForm">
-    <input formControlName="driver" type="text" placeholder="Driver">
-    @if (newLapform.get('driver')?.invalid && newLapForm.get('driver')?.touched){
-        <p>mensagem de obrigatorio</p>
+
+    <input formControlName="driver" type="text" placeholder="Driver"
+    [ngClass]="{'input-error': newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched}">
+    @if (newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched){
+        <p>Driver name is mandatory.</p>
     }
-    <input formControlName="team" type="text" placeholder="Driver">
+    <input formControlName="team" type="text" placeholder="Team"
+    [ngClass]="{'input-error': newLapForm.get('team')?.invalid && newLapForm.get('team')?.touched}">
+    @if (newLapForm.get('team')?.invalid && newLapForm.get('team')?.touched){
+        <p>Team name is mandatory.</p>
+    }
+    <input formControlName="circuit" type="text" placeholder="Circuit"
+    [ngClass]="{'input-error': newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched}">
+    @if (newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched){
+        <p>Circuit name is mandatory.</p>
+    }
+    <input formControlName="lapTime" type="text" placeholder="Lap Time (seconds)"
+    [ngClass]="{'input-error': newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched}">
+    @if (newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched){
+        <p>Lap Time is mandatory.</p>
+    }
+    <input formControlName="date" type="text" placeholder="Date"
+    [ngClass]="{'input-error': newLapForm.get('date')?.invalid && newLapForm.get('date')?.touched}">
+    @if (newLapForm.get('date')?.invalid && newLapForm.get('date')?.touched){
+        <p>Date is mandatory.</p>
+    }
 
-    <input formControlName="circuit" type="text" placeholder="Driver">
-
-    <input formControlName="lapTime" type="text" placeholder="Driver">
-<!-- validacao customizada aqui -->
-    <input formControlName="date" type="text" placeholder="Driver">
-
-    <button (click)="addLap()">Add Lap</button>
+    <button (click)="addLap()" [disabled]="newLapForm.invalid">Add Lap</button>
 </form>

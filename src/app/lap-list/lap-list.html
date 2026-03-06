@@ -5,19 +5,20 @@
     <thead>
         <tr>
             <th>Driver</th>
+            <th>Team</th>
             <th>Circuit</th>
             <th>Lap Time</th>
             <th>Date</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @for(lap of filteredLaps; track lap.id){
+        @for(lap of filteredLaps; track lap.id){
+            <tr>
                 <td>{{ lap.driver }}</td>
                 <td>{{ lap.circuit }}</td>
                 <td>{{ lap.lapTime }}</td>
                 <td>{{ lap.date }}</td>
-            }
-        </tr>
+            </tr>
+        }
     </tbody>
 </table>

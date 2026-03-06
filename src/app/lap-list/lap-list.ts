@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service'
 import { Lap } from '../core/models/lap.model'
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lap-list',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './lap-list.html',
   styleUrls: ['./lap-list.css'],
+  standalone: true
 })
 export class LapList implements OnInit {
 
@@ -21,7 +23,7 @@ export class LapList implements OnInit {
   }
 
   filterByDriver(driver: string): void {
-    this.filteredLaps = this.laps.filter(lap => lap.driver.includes(driver));
+    this.filteredLaps = this.laps.filter(lap => lap.driver.includes(driver.toLowerCase()));
   }
 
   sortByLapTime(){
