@@ -1,0 +1,15 @@
+.best-lap {
+    background-color: unset;
+}
+
+.delete-btn{
+    visibility: hidden;
+}
+
+tr:hover .delete-btn{
+    visibility: visible;
+}
+
+.best-lap td:not(:last-child) {
+  background-color: lightgreen;
+}

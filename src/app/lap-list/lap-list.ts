@@ -10,22 +10,23 @@ import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
   imports: [CommonModule, LapTimeFormatPipe],
   templateUrl: './lap-list.html',
   styleUrls: ['./lap-list.css'],
-  standalone: true
 })
 export class LapList implements OnInit {
 
   laps: Lap[] = [];
   filteredLaps: Lap[] = [];
+  bestLapTime: number | undefined;
 
   constructor(private lapService: LapService, private router: Router) {}
 
   ngOnInit(): void {
     this.laps = this.lapService.getAll()
     this.filteredLaps = [...this.laps];
+    this.bestLapTime = this.lapService.getBestLap()?.lapTime;
   }
 
   filterByDriver(driver: string): void {
-    this.filteredLaps = this.laps.filter(lap => lap.driver.includes(driver.toLowerCase()));
+    this.filteredLaps = this.laps.filter(lap => lap.driver.toLowerCase().includes(driver.toLowerCase()));
   }
 
   sortByLapTime(){
@@ -34,5 +35,12 @@ export class LapList implements OnInit {
 
   goToDetail(id: string): void {
     this.router.navigate(['/laps', id]);
+  }
+
+  deleteLap(event: Event, id: string): void {
+    event.stopPropagation();
+    this.lapService.delete(id);
+    this.laps = this.lapService.getAll();
+    this.filteredLaps = [...this.laps];
   }
 }
