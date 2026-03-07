@@ -4,5 +4,5 @@ export interface Lap {
     team: string,
     circuit: string,
     lapTime: number,
-    date: Date
+    date: string,
 }

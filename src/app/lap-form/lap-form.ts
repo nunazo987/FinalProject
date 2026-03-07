@@ -37,7 +37,7 @@ export class LapForm {
       team: formValues.team!,
       circuit: formValues.circuit!, 
       lapTime: Number(formValues.lapTime),
-      date: new Date(formValues.date!)
+      date: formValues.date!
     }
     this.lapService.create(newLap);
     this.newLapForm.reset();

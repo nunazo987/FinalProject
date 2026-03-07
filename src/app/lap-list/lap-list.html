@@ -1,5 +1,4 @@
-<!-- <p>lap-list works!</p> -->
-<input type="text" placeholder="Filter by driver" (input)="filterByDriver($event.target.value)">
+<input type="text" placeholder="Filter by driver" #filterInput (input)="filterByDriver(filterInput.value)">
 
 <table>
     <thead>
@@ -15,6 +14,7 @@
         @for(lap of filteredLaps; track lap.id){
             <tr>
                 <td>{{ lap.driver }}</td>
+                <td>{{ lap.team }}</td>
                 <td>{{ lap.circuit }}</td>
                 <td>{{ lap.lapTime }}</td>
                 <td>{{ lap.date }}</td>
