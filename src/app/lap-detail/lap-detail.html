@@ -1,0 +1,15 @@
+<h2>Lap Detail</h2>
+
+@if (lap) {
+    <div class="lap-detail">
+        <p><strong>Driver:</strong> {{ lap.driver }}</p>
+        <p><strong>Team:</strong> {{ lap.team }}</p>
+        <p><strong>Circuit:</strong> {{ lap.circuit }}</p>
+        <p><strong>Lap Time:</strong> {{ lap.lapTime | lapTimeFormat }}</p>
+        <p><strong>Date:</strong> {{ lap.date }}</p>
+    </div>
+    <button (click)="goBack()">Back to Lap List</button>
+} @else {
+    <p>Lap not found.</p>
+    <button (click)="goBack()">Back to Lap List</button>
+}

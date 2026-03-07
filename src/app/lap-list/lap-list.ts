@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service'
 import { Lap } from '../core/models/lap.model'
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
 
 @Component({
   selector: 'app-lap-list',
-  imports: [CommonModule],
+  imports: [CommonModule, LapTimeFormatPipe],
   templateUrl: './lap-list.html',
   styleUrls: ['./lap-list.css'],
   standalone: true
@@ -15,7 +17,7 @@ export class LapList implements OnInit {
   laps: Lap[] = [];
   filteredLaps: Lap[] = [];
 
-  constructor(private lapService: LapService) {}
+  constructor(private lapService: LapService, private router: Router) {}
 
   ngOnInit(): void {
     this.laps = this.lapService.getAll()
@@ -28,5 +30,9 @@ export class LapList implements OnInit {
 
   sortByLapTime(){
     this.filteredLaps.sort((a, b) => a.lapTime - b.lapTime);
+  }
+
+  goToDetail(id: string): void {
+    this.router.navigate(['/laps', id]);
   }
 }

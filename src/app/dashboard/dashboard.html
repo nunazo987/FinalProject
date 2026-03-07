@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<h2>Dashboard</h2>
+
+<div class="kpis">
+    <div class="kpi-card">
+        <h3>Total Laps</h3>
+        <p>{{ totalLaps }}</p>
+    </div>
+
+    <div class="kpi-card">
+        <h3>Best Lap</h3>
+        @if (bestLap) {
+            <p>{{ bestLap.driver }} - {{ bestLap.lapTime }}s</p>
+        } @else {
+            <p>No data.</p>
+        } 
+    </div>
+
+    <div class="kpi-card">
+        <h3>Average Lap Time</h3>
+        @if (averageLapTime) {
+            <p>{{ averageLapTime }}s</p>
+        } @else {
+            <p>No data.</p>
+        } 
+    </div>
+
+    <div class="kpi-card">
+        <h3>Last lap Added</h3>
+        @if (lastLap) {
+            <div class="last-lap">
+                <p>Pilot: {{ lastLap.driver }}</p>
+                <p>Team: {{ lastLap.team }}</p>
+                <p>Circuit: {{ lastLap.circuit }}</p>
+                <p>Lap Time: {{ lastLap.lapTime }}s</p>
+                <p>Date: {{ lastLap.date }}</p>
+            </div>
+        } @else {
+            <p>No lap added yet.</p>
+        } 
+    </div>
+</div>
+

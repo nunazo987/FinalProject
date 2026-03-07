@@ -12,11 +12,11 @@
     </thead>
     <tbody>
         @for(lap of filteredLaps; track lap.id){
-            <tr>
+            <tr (click)="goToDetail(lap.id)" style="cursor: pointer">
                 <td>{{ lap.driver }}</td>
                 <td>{{ lap.team }}</td>
                 <td>{{ lap.circuit }}</td>
-                <td>{{ lap.lapTime }}</td>
+                <td>{{ lap.lapTime | lapTimeFormat }}</td>
                 <td>{{ lap.date }}</td>
             </tr>
         }
