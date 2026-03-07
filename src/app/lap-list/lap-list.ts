@@ -25,8 +25,12 @@ export class LapList implements OnInit {
     this.bestLapTime = this.lapService.getBestLap()?.lapTime;
   }
 
-  filterByDriver(driver: string): void {
-    this.filteredLaps = this.laps.filter(lap => lap.driver.toLowerCase().includes(driver.toLowerCase()));
+  filterLaps(query: string): void {
+    this.filteredLaps = this.laps.filter(lap => 
+      lap.driver.toLowerCase().includes(query.toLowerCase()) ||
+      lap.team.toLowerCase().includes(query.toLowerCase()) ||
+      lap.circuit.toLowerCase().includes(query.toLowerCase())
+    );
   }
 
   sortByLapTime(){
