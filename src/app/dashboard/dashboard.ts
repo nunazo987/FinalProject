@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service';
 import { Lap } from '../core/models/lap.model';
 import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
+import { KpiCard } from '../shared/kpi-card/kpi-card';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, LapTimeFormatPipe],
+  imports: [CommonModule, LapTimeFormatPipe, KpiCard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

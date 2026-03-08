@@ -2,28 +2,9 @@
 <h2> 2026 Season Testing Overview</h2>
 
 <div class="kpis">
-    <div class="kpi-card">
-        <h3>Total Laps</h3>
-        <p>{{ totalLaps }}</p>
-    </div>
-
-    <div class="kpi-card">
-        <h3>Best Lap</h3>
-        @if (bestLap) {
-            <p>{{ bestLap.driver }} - {{ bestLap.lapTime | lapTimeFormat }}s</p>
-        } @else {
-            <p>No data.</p>
-        } 
-    </div>
-
-    <div class="kpi-card">
-        <h3>Average Lap Time</h3>
-        @if (averageLapTime) {
-            <p>{{ averageLapTime | lapTimeFormat }}s</p>
-        } @else {
-            <p>No data.</p>
-        } 
-    </div>
+    <app-kpi-card title="Total Laps" [value]="totalLaps" />
+    <app-kpi-card title="Best Lap" [value]="bestLap ? bestLap.driver + ' — ' + (bestLap.lapTime | lapTimeFormat) : 'No data'" />
+    <app-kpi-card title="Average Lap Time" [value]="averageLapTime ? (averageLapTime | lapTimeFormat) : 'No data'" />
 
     <div class="kpi-card">
         <h3>Last Lap Added</h3>

@@ -1,0 +1,20 @@
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.kpi-card h3 {
+  color: var(--gray);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.kpi-card p {
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
