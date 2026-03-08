@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class KpiCard {
   @Input() title: string = '';
-  @Input() value: string
+  @Input() value: string = '';
 }
