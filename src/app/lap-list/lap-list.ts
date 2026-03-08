@@ -46,5 +46,6 @@ export class LapList implements OnInit {
     this.lapService.delete(id);
     this.laps = this.lapService.getAll();
     this.filteredLaps = [...this.laps];
+    this.bestLapTime = this.lapService.getBestLap()?.lapTime;
   }
 }

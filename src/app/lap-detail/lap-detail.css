@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  padding: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.lap-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.lap-detail p {
+  color: var(--gray-light);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.lap-detail p strong {
+  color: var(--white);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 500px;
+  margin: 0 auto;
+}
+
+button {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--red-dark);
+}

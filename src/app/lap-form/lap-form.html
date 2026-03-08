@@ -1,32 +1,40 @@
 <h2>Add Lap</h2>
 
+<div class="lap-form-container">
 <form [formGroup]="newLapForm">
 
-    <input formControlName="driver" type="text" placeholder="Driver"
+    <select formControlName="driver" (change)="onDriverChange($any($event.target).value)"
     [ngClass]="{'input-error': newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched}">
+    <option value="">Select Driver</option>
+    @for(pilot of pilots; track pilot.name){
+    <option [value]="pilot.name">{{ pilot.name }}</option>
+    }
+    </select>
     @if (newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched){
         <p>Driver name is mandatory.</p>
     }
-    <input formControlName="team" type="text" placeholder="Team"
-    [ngClass]="{'input-error': newLapForm.get('team')?.invalid && newLapForm.get('team')?.touched}">
-    @if (newLapForm.get('team')?.invalid && newLapForm.get('team')?.touched){
-        <p>Team name is mandatory.</p>
-    }
-    <input formControlName="circuit" type="text" placeholder="Circuit"
-    [ngClass]="{'input-error': newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched}">
-    @if (newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched){
-        <p>Circuit name is mandatory.</p>
-    }
+    <input formControlName="team" type="text" placeholder="Team" readonly>
+    
     <input formControlName="lapTime" type="text" placeholder="Lap Time (seconds)"
     [ngClass]="{'input-error': newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched}">
     @if (newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched){
         <p>Lap Time is mandatory.</p>
     }
-    <input formControlName="date" type="text" placeholder="Date"
+    <input formControlName="date" type="date" placeholder="Date"
     [ngClass]="{'input-error': newLapForm.get('date')?.invalid && newLapForm.get('date')?.touched}">
     @if (newLapForm.get('date')?.invalid && newLapForm.get('date')?.touched){
         <p>Date is mandatory.</p>
     }
+    <select formControlName="circuit" [ngClass]="{'input-error': newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched}">
+        <option value="">Select Circuit</option>
+        @for(circuit of circuits; track circuit){
+        <option [value]="circuit">{{ circuit }}</option>
+    }
+    </select>
+    @if (newLapForm.get('circuit')?.invalid && newLapForm.get('circuit')?.touched){
+    <p>Circuit is mandatory.</p>
+    }
 
     <button (click)="addLap()" [disabled]="newLapForm.invalid">Add Lap</button>
 </form>
+</div>

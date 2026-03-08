@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service';
 import { Lap } from '../core/models/lap.model';
+import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, LapTimeFormatPipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

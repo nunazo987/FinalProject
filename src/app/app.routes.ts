@@ -10,4 +10,5 @@ export const routes: Routes = [
     { path: 'laps', component: LapList },
     { path: 'laps/new', component: LapForm },
     { path: 'laps/:id', component: LapDetail },
+    { path: 'laps/edit/:id', component: LapForm}
 ];

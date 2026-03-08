@@ -1,0 +1,75 @@
+.lap-form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+input, select {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+select option {
+  background: var(--bg-card);
+}
+
+p {
+  color: var(--red);
+  font-size: 0.8rem;
+}
+
+button {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+button:hover {
+  background: var(--red-dark);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: var(--red);
+}
+
+:host {
+  display: block;
+  padding: 2rem;
+}

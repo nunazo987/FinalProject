@@ -1,3 +1,4 @@
+<div class="lap-detail-container">
 <h2>Lap Detail</h2>
 
 @if (lap) {
@@ -8,8 +9,12 @@
         <p><strong>Lap Time:</strong> {{ lap.lapTime | lapTimeFormat }}</p>
         <p><strong>Date:</strong> {{ lap.date }}</p>
     </div>
+    <div class="btn-group">
+    <button (click)="editLap()">Editar</button>
     <button (click)="goBack()">Back to Lap List</button>
+    </div>
 } @else {
     <p>Lap not found.</p>
     <button (click)="goBack()">Back to Lap List</button>
 }
+</div>

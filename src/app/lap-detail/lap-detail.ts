@@ -30,4 +30,8 @@ export class LapDetail implements OnInit {
   goBack(): void {
     this.router.navigate(['/laps']);
   }
+
+  editLap(): void {
+  this.router.navigate(['/laps/edit', this.lap?.id]);
+}
 }

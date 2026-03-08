@@ -1,4 +1,5 @@
-<h2>Dashboard</h2>
+<div class="dashboard-container">
+<h2> 2026 Season Testing Overview</h2>
 
 <div class="kpis">
     <div class="kpi-card">
@@ -9,7 +10,7 @@
     <div class="kpi-card">
         <h3>Best Lap</h3>
         @if (bestLap) {
-            <p>{{ bestLap.driver }} - {{ bestLap.lapTime }}s</p>
+            <p>{{ bestLap.driver }} - {{ bestLap.lapTime | lapTimeFormat }}s</p>
         } @else {
             <p>No data.</p>
         } 
@@ -18,7 +19,7 @@
     <div class="kpi-card">
         <h3>Average Lap Time</h3>
         @if (averageLapTime) {
-            <p>{{ averageLapTime }}s</p>
+            <p>{{ averageLapTime | lapTimeFormat }}s</p>
         } @else {
             <p>No data.</p>
         } 
@@ -39,4 +40,4 @@
         } 
     </div>
 </div>
-
+</div>

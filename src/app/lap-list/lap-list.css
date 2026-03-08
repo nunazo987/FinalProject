@@ -1,15 +1,91 @@
+input {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  width: 300px;
+}
+
+button {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+
+button:hover {
+  background: var(--red-dark);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: var(--gray);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 0.75rem 1rem;
+  color: var(--gray-light);
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover td {
+  background: var(--bg-hover);
+  color: var(--white);
+}
+
 .best-lap {
-    background-color: unset;
-}
-
-.delete-btn{
-    visibility: hidden;
-}
-
-tr:hover .delete-btn{
-    visibility: visible;
+  background-color: unset;
 }
 
 .best-lap td:not(:last-child) {
-  background-color: lightgreen;
+  color: var(--green);
+}
+
+.delete-btn {
+  visibility: hidden;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  margin: 0;
+}
+
+tr:hover .delete-btn {
+  visibility: visible;
+}
+
+.delete-btn:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+:host {
+  display: block;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lap-list-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
