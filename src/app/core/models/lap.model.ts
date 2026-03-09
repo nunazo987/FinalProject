@@ -3,6 +3,6 @@ export interface Lap {
     driver: string,
     team: string,
     circuit: string,
-    lapTime: number,
+    lapTime: string,
     date: string,
 }

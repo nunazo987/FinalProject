@@ -15,7 +15,7 @@ export class LapList implements OnInit {
 
   laps: Lap[] = [];
   filteredLaps: Lap[] = [];
-  bestLapTime: number | undefined;
+  bestLapTime: string | undefined;
 
   constructor(private lapService: LapService, private router: Router) {}
 
@@ -32,9 +32,13 @@ export class LapList implements OnInit {
       lap.circuit.toLowerCase().includes(query.toLowerCase())
     );
   }
+  private toSeconds(lapTime: string): number {
+  const [minutes, rest] = lapTime.split(':');
+  return parseInt(minutes) * 60 + parseFloat(rest);
+  }
 
-  sortByLapTime(){
-    this.filteredLaps.sort((a, b) => a.lapTime - b.lapTime);
+  sortByLapTime(): void {
+    this.filteredLaps.sort((a, b) => this.toSeconds(a.lapTime) - this.toSeconds(b.lapTime));
   }
 
   goToDetail(id: string): void {

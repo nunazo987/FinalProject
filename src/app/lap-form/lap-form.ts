@@ -15,7 +15,7 @@ export class LapForm implements OnInit{
   isEditMode: boolean = false;
   editId: string | null = null;
 
-  pilots = [
+  drivers = [
   { name: 'Max Verstappen', team: 'Red Bull Racing' },
   { name: 'Isack Hadjar', team: 'Red Bull Racing' },
   { name: 'Lewis Hamilton', team: 'Ferrari' },
@@ -40,14 +40,18 @@ export class LapForm implements OnInit{
   { name: 'Valtteri Bottas', team: 'Cadillac' },
 ];
 
-circuits = ['Bahrain', 'Barcelona'];
-
+circuits = ['Bahrain', 'Jeddah', 'Melbourne', 'Suzuka', 
+  'Shanghai', 'Miami', 'Imola', 'Monaco', 'Barcelona', 
+  'Montreal', 'Silverstone', 'Spa', 'Monza', 'Singapore', 
+  'Austin', 'Mexico City', 'São Paulo', 'Las Vegas', 
+  'Abu Dhabi', 'Portimão', 'Zandvoort', 'Budapest', 
+  'Baku', 'Lusail'];
+  
   newLapForm = new FormGroup({
     driver: new FormControl<string>("", [Validators.required]),
     team: new FormControl({value: "", disabled: true}),
     circuit: new FormControl("", [Validators.required]),
-    lapTime: new FormControl<number | null>(null, [Validators.required, 
-      Validators.min(1), Validators.pattern('^[0-9]+$')]),
+    lapTime: new FormControl<string>("", [Validators.required, Validators.pattern('^[0-9]+:[0-5][0-9]\\.[0-9]{3}$')]),
     date: new FormControl("", [Validators.required]),
   })
 
@@ -71,9 +75,9 @@ circuits = ['Bahrain', 'Barcelona'];
   }
 
   onDriverChange(driverName: string): void {
-    const pilot = this.pilots.find(p => p.name === driverName);
-    if (pilot) {
-      this.newLapForm.patchValue({ team: pilot.team });
+    const driver = this.drivers.find(d => d.name === driverName);
+    if (driver) {
+      this.newLapForm.patchValue({ team: driver.team });
     }
   }
 
@@ -86,7 +90,7 @@ circuits = ['Bahrain', 'Barcelona'];
           driver: formValues.driver!,
           team: this.newLapForm.get('team')?.value!,
           circuit: formValues.circuit!,
-          lapTime: Number(formValues.lapTime),
+          lapTime: formValues.lapTime!,
           date: formValues.date!
         };
         this.lapService.update(updatedLap);
@@ -96,7 +100,7 @@ circuits = ['Bahrain', 'Barcelona'];
           driver: formValues.driver!,
           team: this.newLapForm.get('team')?.value!,
           circuit: formValues.circuit!,
-          lapTime: Number(formValues.lapTime),
+          lapTime: formValues.lapTime!,
           date: formValues.date!
         };
         this.lapService.create(newLap);

@@ -2,7 +2,7 @@
 <h2> 2026 Season Testing Overview</h2>
 
 <div class="kpis">
-    <app-kpi-card title="Total Laps" [value]="totalLaps" />
+    <app-kpi-card title="Total Laps" [value]="totalLaps.toString()" />
     <app-kpi-card title="Best Lap" [value]="bestLap ? bestLap.driver + ' — ' + (bestLap.lapTime | lapTimeFormat) : 'No data'" />
     <app-kpi-card title="Average Lap Time" [value]="averageLapTime ? (averageLapTime | lapTimeFormat) : 'No data'" />
 

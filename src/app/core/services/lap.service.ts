@@ -10,6 +10,12 @@ export class LapService {
 
     constructor(){}
 
+    private toSeconds(lapTime: string): number {
+        const [minutes, rest] = lapTime.split(':');
+        const seconds = parseFloat(rest);
+        return parseInt(minutes) * 60 + seconds;
+    }
+
     getAll(): Lap[]{
         const data = localStorage.getItem(this.STORAGE_KEY);
         return data ? JSON.parse(data): [];
@@ -55,7 +61,8 @@ export class LapService {
         }
 
         return laps.reduce((best, current) => 
-        current.lapTime < best.lapTime ? current : best);
+        this.toSeconds(current.lapTime) < this.toSeconds(best.lapTime) ? current : best
+    );
     }
 
     getLastLap(): Lap | undefined {
@@ -69,7 +76,7 @@ export class LapService {
         return laps[laps.length - 1];
     }
 
-    getAverageLapTime(): number | undefined {
+    getAverageLapTime(): string | undefined {
 
         const laps = this.getAll();
 
@@ -77,8 +84,11 @@ export class LapService {
             return undefined;
         }
 
-        const total = laps.reduce((sum, lap) => sum + lap.lapTime, 0);
-        return total / laps.length
+        const totalSeconds = laps.reduce((sum, lap) => sum + this.toSeconds(lap.lapTime), 0);
+        const avg = totalSeconds / laps.length;
+        const minutes = Math.floor(avg / 60);
+        const seconds = (avg % 60).toFixed(3);
+        return `${minutes}:${seconds.padStart(6, '0')}`;
     }
     
 }

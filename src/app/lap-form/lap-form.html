@@ -6,8 +6,8 @@
     <select formControlName="driver" (change)="onDriverChange($any($event.target).value)"
     [ngClass]="{'input-error': newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched}">
     <option value="">Select Driver</option>
-    @for(pilot of pilots; track pilot.name){
-    <option [value]="pilot.name">{{ pilot.name }}</option>
+    @for(driver of drivers; track driver.name){
+    <option [value]="driver.name">{{ driver.name }}</option>
     }
     </select>
     @if (newLapForm.get('driver')?.invalid && newLapForm.get('driver')?.touched){
@@ -15,10 +15,10 @@
     }
     <input formControlName="team" type="text" placeholder="Team" readonly>
     
-    <input formControlName="lapTime" type="text" placeholder="Lap Time (seconds)"
+    <input formControlName="lapTime" type="text" placeholder="ex: 1:23.456"
     [ngClass]="{'input-error': newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched}">
     @if (newLapForm.get('lapTime')?.invalid && newLapForm.get('lapTime')?.touched){
-        <p>Lap Time is mandatory.</p>
+        <p>Format: m:ss.mmm (ex: 1:23.456)</p>
     }
     <input formControlName="date" type="date" placeholder="Date"
     [ngClass]="{'input-error': newLapForm.get('date')?.invalid && newLapForm.get('date')?.touched}">
