@@ -40,12 +40,13 @@ export class LapForm implements OnInit{
   { name: 'Valtteri Bottas', team: 'Cadillac' },
 ];
 
-circuits = ['Bahrain', 'Jeddah', 'Melbourne', 'Suzuka', 
-  'Shanghai', 'Miami', 'Imola', 'Monaco', 'Barcelona', 
-  'Montreal', 'Silverstone', 'Spa', 'Monza', 'Singapore', 
-  'Austin', 'Mexico City', 'São Paulo', 'Las Vegas', 
-  'Abu Dhabi', 'Portimão', 'Zandvoort', 'Budapest', 
-  'Baku', 'Lusail'];
+circuits = [
+  'Melbourne', 'Shanghai', 'Suzuka', 'Bahrain', 'Jeddah',
+  'Miami', 'Montreal', 'Monaco', 'Barcelona-Catalunya', 'Spielberg',
+  'Silverstone', 'Spa', 'Budapest', 'Zandvoort', 'Monza',
+  'Madrid', 'Baku', 'Singapore', 'Austin', 'Mexico City',
+  'São Paulo', 'Las Vegas', 'Lusail', 'Abu Dhabi'
+];
   
   newLapForm = new FormGroup({
     driver: new FormControl<string>("", [Validators.required]),
