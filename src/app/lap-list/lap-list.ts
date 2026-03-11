@@ -32,10 +32,10 @@ export class LapList implements OnInit {
       lap.circuit.toLowerCase().includes(query.toLowerCase())
     );
   }
-  private toSeconds(lapTime: string): number {
-  const [minutes, rest] = lapTime.split(':');
-  return parseInt(minutes) * 60 + parseFloat(rest);
-  }
+    private toSeconds(lapTime: string): number {
+      const [minutes, rest] = lapTime.split(':');
+      return parseInt(minutes) * 60 + parseFloat(rest);
+    }
 
   sortByLapTime(): void {
     this.filteredLaps.sort((a, b) => this.toSeconds(a.lapTime) - this.toSeconds(b.lapTime));
