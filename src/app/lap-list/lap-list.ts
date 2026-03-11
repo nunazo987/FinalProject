@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { LapService } from '../core/services/lap.service'
 import { Lap } from '../core/models/lap.model'
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,8 @@ export class LapList implements OnInit {
   filteredLaps: Lap[] = [];
   bestLapTime: string | undefined;
 
-  constructor(private lapService: LapService, private router: Router) {}
+  private lapService = inject(LapService);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.laps = this.lapService.getAll()

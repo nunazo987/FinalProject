@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LapService } from '../core/services/lap.service';
 import { Lap } from '../core/models/lap.model'; 
@@ -14,11 +14,10 @@ import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
 export class LapDetail implements OnInit {
   lap: Lap | undefined;
 
-  constructor(
-    private route: ActivatedRoute,
-    private lapService: LapService,
-    private router: Router,
-  ) {}
+
+    private route = inject(ActivatedRoute);
+    private lapService = inject(LapService);
+    private router = inject(Router);
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

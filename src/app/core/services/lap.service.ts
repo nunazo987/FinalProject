@@ -8,8 +8,6 @@ import { Lap } from '../models/lap.model';
 export class LapService {
     private STORAGE_KEY = 'lapTimes';
 
-    constructor(){}
-
     private toSeconds(lapTime: string): number {
         const [minutes, rest] = lapTime.split(':');
         const seconds = parseFloat(rest);

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service';
 import { Lap } from '../core/models/lap.model';
 import { LapTimeFormatPipe } from '../pipes/lap-time-format-pipe';
@@ -17,7 +17,7 @@ export class Dashboard implements OnInit {
   averageLapTime: string | undefined;
   lastLap: Lap | undefined;
 
-  constructor(private lapService: LapService){}
+  private lapService = inject(LapService);
 
   ngOnInit(): void {
     this.totalLaps = this.lapService.getTotalLaps();
