@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './lap-form.css',
 })
 export class LapForm implements OnInit{
-  isEditMode: boolean = false;
+  isEditMode = false;
   editId: string | null = null;
 
   drivers = [

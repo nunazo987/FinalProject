@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './kpi-card.css',
 })
 export class KpiCard {
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() value: string | number = '';
 }

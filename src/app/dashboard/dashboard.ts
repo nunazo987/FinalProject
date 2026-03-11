@@ -12,7 +12,7 @@ import { KpiCard } from '../shared/kpi-card/kpi-card';
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
-  totalLaps: number = 0;
+  totalLaps = 0;
   bestLap: Lap | undefined;
   averageLapTime: string | undefined;
   lastLap: Lap | undefined;
