@@ -1,2 +1,16 @@
-<app-navbar />
-<router-outlet />
+@if (router.url !== '/login') {
+  <app-navbar>
+    <span class="nav-brand">
+      BoxBox
+      <span class="nav-subtitle">F1 Lap Data Analytics</span>
+    </span>
+
+    <div class="nav-links">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/laps">Laps</a>
+      <a routerLink="/laps/new">Add Lap</a>
+    </div>
+  </app-navbar>
+}
+
+<router-outlet></router-outlet>
