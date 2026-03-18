@@ -15,3 +15,4 @@ export class App {
   router = inject(Router);
 }
 
+//um comentário :)
