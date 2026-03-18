@@ -3,14 +3,17 @@ on:
   push:
     branches:
       - main
+
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -40,7 +43,8 @@ jobs:
       - name: Move build output
         run: |
           mkdir -p .vercel/output/static
-          cp -r finalProject/dist/finalProject/* .vercel/output/static/
+          ls -la FinalProject/dist/
+          cp -r FinalProject/dist/finalProject/browser/* .vercel/output/static/
           cat > .vercel/output/config.json <<EOF
           {
             "version": 3,
@@ -50,6 +54,6 @@ jobs:
             ]
           }
           EOF
-          
+
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
