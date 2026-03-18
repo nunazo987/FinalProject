@@ -1,0 +1,14 @@
+<div class="login-container">
+  <h2>BoxBox</h2>
+  <form [formGroup]="loginForm">
+    <input formControlName="user" type="text" placeholder="User">
+    <input formControlName="password" type="password" placeholder="Password">
+
+    @if (loginError) {
+      <p class="error">Invalid username or password.</p>
+    }
+
+    <button (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
+    <button type="button" (click)="onRegister()" [disabled]="loginForm.invalid">Register</button>
+  </form>
+</div>

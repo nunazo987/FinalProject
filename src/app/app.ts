@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './navbar/navbar'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,6 @@ import { Navbar } from './navbar/navbar'
 })
 export class App {
   protected readonly title = signal('finalProject');
+
+  router = inject(Router);
 }

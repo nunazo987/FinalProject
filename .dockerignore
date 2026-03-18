@@ -43,6 +43,7 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Ignore sensitive environments
-/src/environments/environment.development.ts
-/src/environments/environment.prod.ts
+#environments 
+environments/
+.dockerignore
+

@@ -1,3 +1,5 @@
+[![CI](https://github.com/nunazo987/FinalProject/actions/workflows/ci.yml/badge.svg)](https://github.com/nunazo987/FinalProject/actions/workflows/ci.yml)
+
 # BoxBox — F1 Lap Analytics
 
 **Student:** Nuno  

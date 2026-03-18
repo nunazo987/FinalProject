@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LapService } from '../core/services/lap.service'
 import { Lap } from '../core/models/lap.model'
 import { FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './lap-form.css',
 })
 export class LapForm implements OnInit{
-  isEditMode: boolean = false;
+  isEditMode = false;
   editId: string | null = null;
 
   drivers = [
@@ -56,7 +56,9 @@ circuits = [
     date: new FormControl("", [Validators.required]),
   })
 
-  constructor (private lapService: LapService, private router: Router, private route: ActivatedRoute){}
+  private lapService = inject(LapService); 
+  private router = inject (Router); 
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.editId = this.route.snapshot.paramMap.get('id');
@@ -89,7 +91,7 @@ circuits = [
         const updatedLap: Lap = {
           id: this.editId,
           driver: formValues.driver!,
-          team: this.newLapForm.get('team')?.value!,
+          team: this.newLapForm.get('team')?.value??'',
           circuit: formValues.circuit!,
           lapTime: formValues.lapTime!,
           date: formValues.date!
@@ -99,7 +101,7 @@ circuits = [
         const newLap: Lap = {
           id: crypto.randomUUID(),
           driver: formValues.driver!,
-          team: this.newLapForm.get('team')?.value!,
+          team: this.newLapForm.get('team')?.value??'',
           circuit: formValues.circuit!,
           lapTime: formValues.lapTime!,
           date: formValues.date!
