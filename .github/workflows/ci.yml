@@ -1,10 +1,13 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-      - feature/ci-pipeline
-  workflow_dispatch: {}   # ⚠️ o {} é obrigatório para YAML válido
+      - main
+  workflow_dispatch: {}
 
 jobs:
   build-and-lint:
