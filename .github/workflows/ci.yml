@@ -35,13 +35,13 @@ jobs:
         run: npm ci
 
       - name: Generate environment.ts
-        run: mkdir -p src/environments && cat <<EOF > src/environments/environment.development.ts
-export const environment = {
+        run: |
+          mkdir -p src/environments
+          echo "export const environment = {
   production: false,
   supabaseUrl: '${SUPABASE_URL}',
   supabaseKey: '${SUPABASE_KEY}',
-};
-EOF
+};" > src/environments/environment.development.ts
 
       - name: Executar lint
         run: npm run lint
