@@ -46,3 +46,4 @@ Thumbs.db
 # Ignore sensitive environments
 /src/environments/environment.development.ts
 /src/environments/environment.prod.ts
+.vercel/
