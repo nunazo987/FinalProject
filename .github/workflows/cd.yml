@@ -1,58 +1,35 @@
-name: CD - Production Deployment
+name: Deploy to Vercel
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
-  packages: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-      API_URL: ${{ secrets.API_URL }}
-      
+
     steps:
-      # Checkout
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'npm'
 
-      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Generate environment.prod.ts
-      - name: Generate production environment
-        run: |
-          mkdir -p src/environments
-          cat > src/environments/environment.prod.ts <<EOF
-          export const environment = {
-            production: true,
-            apiUrl: '${API_URL}',
-            supabaseUrl: '${SUPABASE_URL}',
-            supabaseKey: '${SUPABASE_KEY}'
-          };
-          EOF
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
-      # Build project
-      - name: Build project
-        run: npm run build -- --configuration production
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      # Deploy to Vercel
-      - name: Deploy to Vercel
-        run: npx vercel deploy --prebuilt --prod --token $VERCEL_TOKEN --confirm --yes
+      - name: Build project (gera .vercel/output)
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy prebuilt to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
