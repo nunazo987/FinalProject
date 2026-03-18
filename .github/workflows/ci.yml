@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - feature/ci-pipeline
-  workflow_dispatch: {}
+  workflow_dispatch: {}   # ⚠️ o {} é obrigatório para YAML válido
 
 jobs:
   build-and-lint:
@@ -34,7 +34,7 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Generate environment.ts
+      - name: Generate environment.development.ts
         run: |
           mkdir -p src/environments
           echo "export const environment = {
