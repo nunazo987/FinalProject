@@ -40,7 +40,7 @@ jobs:
       - name: Move build output
         run: |
           mkdir -p .vercel/output/static
-          cp -r finalProject/dist/finalProject/browser/* .vercel/output/static/
+          cp -r FinalProject/dist/finalProject/browser/* .vercel/output/static/
           cat > .vercel/output/config.json <<EOF
           {
             "version": 3,
