@@ -35,9 +35,7 @@ jobs:
         run: npm ci
 
       - name: Generate environment.ts
-        run: |
-          mkdir -p src/environments
-          cat <<EOF > src/environments/environment.development.ts
+        run: mkdir -p src/environments && cat <<EOF > src/environments/environment.development.ts
 export const environment = {
   production: false,
   supabaseUrl: '${SUPABASE_URL}',
