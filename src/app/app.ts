@@ -9,6 +9,9 @@ import { Router } from '@angular/router'
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
+const unusedVar = 42;
+
 export class App {
   protected readonly title = signal('finalProject');
 
