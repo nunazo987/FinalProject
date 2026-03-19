@@ -14,5 +14,3 @@ export class App {
 
   router = inject(Router);
 }
-
-const errorTest: number = 0;
