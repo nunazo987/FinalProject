@@ -28,6 +28,11 @@ jobs:
       - name: Pull Vercel environment
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
+      - name: Replace environment variables
+        run: |
+          sed -i "s|SUPABASE_URL_PLACEHOLDER|${{ secrets.SUPABASE_URL }}|g" src/environments/environment.prod.ts
+          sed -i "s|SUPABASE_KEY_PLACEHOLDER|${{ secrets.SUPABASE_ANON_KEY }}|g" src/environments/environment.prod.ts
+
       - name: Build project (gera .vercel/output)
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
