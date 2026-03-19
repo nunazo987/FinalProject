@@ -2,34 +2,134 @@
 
 # BoxBox — F1 Lap Analytics
 
-**Student:** Nuno  
-**Course:** JavaScript Programming  
+Student: Nuno
+Course: UpSkill - JavaScript Programming (Angular)
 
-## Description
+ About the Project
 
-BoxBox is a Single Page Application (SPA) built with Angular to record and analyse lap times from the 2026 F1 pre-season testing.
+BoxBox is a Single Page Application (SPA) built with Angular that allows users to record and analyse Formula 1 pre-season testing lap times (2026).
 
-## Features
+The goal of this project is to simulate a simple performance analysis system, providing insights such as best lap, average time, and lap history.
 
--  **Dashboard** — Real-time KPIs: total laps, best lap, average lap time and last lap added
--  **Lap List** — List with filter by driver/team/circuit and sort by lap time
--  **Add Lap** — Form with validations and driver/circuit dropdowns
--  **Edit Lap** — Edit existing lap records
--  **Lap Detail** — Detail page with dynamic route `/laps/:id`
--  **Persistence** — Data stored in LocalStorage via Service
+ Features
 
-## How to Run
-```bash
+- Dashboard
+
+- Real-time KPIs:
+
+    Total laps
+
+    Best lap
+
+    Average lap time
+
+    Last lap added
+
+- Lap Management (CRUD)
+
+    Add new laps
+
+    Edit existing laps
+
+    View lap details (/laps/:id)
+
+    List all recorded laps
+
+- Filtering & Sorting
+
+    Filter by driver, team, or circuit
+
+    Sort by lap time
+
+- Authentication
+
+    User login and registration with Supabase
+
+ Tech Stack
+
+Frontend: Angular 21 (Standalone Components)
+
+Language: TypeScript
+
+Forms: Reactive Forms
+
+Routing: Angular Router
+
+Data Persistence: LocalStorage
+
+Authentication: Supabase
+
+Containerization: Docker & Docker Compose
+
+CI/CD: GitHub Actions
+
+ Authentication (Supabase)
+
+Authentication is handled using Supabase, allowing:
+
+User registration
+
+Secure login
+
+ Run with Docker
+
+Make sure you have Docker installed.
+
+Using Docker Compose
+docker compose up -d
+
+Then open:
+
+http://localhost:80
+
+ Run Locally
+
+Clone the repository:
+
+git clone <repo-url>
+
+Install dependencies:
+
 npm install
+
+Configure Supabase:
+
+Edit:
+
+src/environments/environment.ts
+
+and add your Supabase keys.
+
+Start the app:
+
 ng serve
-```
 
-Open `http://localhost:4200` in your browser.
+Open:
 
-## Tech Stack
+http://localhost:4200
 
-- Angular 21 (Standalone Components)
-- TypeScript
-- Reactive Forms
-- Angular Router
-- LocalStorage
+ CI/CD (GitHub Actions)
+
+This project includes a CI pipeline using GitHub Actions that:
+
+Builds the application
+
+Validates the code
+
+Prepares it for deployment
+
+ Project Goals
+
+This project was developed as part of the UpSkill program with the goal of:
+
+Practicing Angular development (SPA, routing, forms)
+
+Integrating authentication with Supabase
+
+Learning Docker containerization
+
+Applying CI/CD concepts
+
+ Notes
+
+This is an academic project created to demonstrate modern web development skills.
