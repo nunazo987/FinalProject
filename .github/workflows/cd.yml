@@ -1,55 +1,40 @@
-name: Vercel Production Deployment
+name: Deploy to Vercel
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  Deploy-Production:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Generate environment.ts
-        run: |
-          mkdir -p FinalProject/src/environments
-          cat > FinalProject/src/environments/environment.ts <<EOF
-          export const environment = {
-            production: true,
-            supabaseUrl: '${{ secrets.SUPABASE_URL }}',
-            supabaseKey: '${{ secrets.SUPABASE_ANON_KEY }}'
-          };
-          EOF
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        working-directory: FinalProject
         run: npm ci
 
-      - name: Build Project Artifacts
-        working-directory: FinalProject
-        run: npx ng build --configuration production
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
-      - name: Move build output
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Replace environment variables
         run: |
-          mkdir -p .vercel/output/static
-          cp -r FinalProject/dist/FinalProject/browser/* .vercel/output/static/
-          cat > .vercel/output/config.json <<EOF
-          {
-            "version": 3,
-            "routes": [
-              { "handle": "filesystem" },
-              { "src": "/(.*)", "dest": "/index.html" }
-            ]
-          }
-          EOF
-          
-      - name: Deploy Project Artifacts to Vercel
+          sed -i "s|SUPABASE_URL_PLACEHOLDER|${{ secrets.SUPABASE_URL }}|g" src/environments/environment.prod.ts
+          sed -i "s|SUPABASE_KEY_PLACEHOLDER|${{ secrets.SUPABASE_ANON_KEY }}|g" src/environments/environment.prod.ts
+
+      - name: Build project (gera .vercel/output)
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy prebuilt to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
