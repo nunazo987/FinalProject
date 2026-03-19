@@ -16,3 +16,4 @@ export class App {
 }
 
 const errorTest: number = 0;
+}
