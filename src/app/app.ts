@@ -15,4 +15,4 @@ export class App {
   router = inject(Router);
 }
 
-//comentario
+let teste: string = "teste";
