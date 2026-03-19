@@ -14,3 +14,5 @@ export class App {
 
   router = inject(Router);
 }
+
+let unusedVariable: number = 10;
