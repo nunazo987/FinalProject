@@ -14,5 +14,3 @@ export class App {
 
   router = inject(Router);
 }
-
-let teste: string = "teste";
